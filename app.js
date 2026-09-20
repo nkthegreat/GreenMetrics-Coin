@@ -2,7 +2,7 @@
 // 1. BLOCKCHAIN SETTINGS (GREENMETRICS COIN)
 // ==========================================
 // ΒΑΛΕ ΕΔΩ ΤΟ ΝΕΟ CONTRACT ADDRESS ΑΠΟ ΤΟ deploy.js
-const CONTRACT_ADDRESS = "0x...ΒΑΛΕ_ΤΗ_ΝΕΑ_ΔΙΕΥΘΥΝΣΗ_ΕΔΩ..."; 
+const CONTRACT_ADDRESS = "0xD065FbE06EBF428c17B99Ea2d5542C52Eab61BFB"; 
 const RPC_URL = "https://ethereum-sepolia-rpc.publicnode.com";
 
 const CONTRACT_ABI = [
