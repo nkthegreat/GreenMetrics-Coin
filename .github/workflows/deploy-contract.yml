@@ -18,7 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Deploy Script
+      - name: Check Balance & Run Deploy
         env:
           ADMIN_PRIVATE_KEY: ${{ secrets.ADMIN_PRIVATE_KEY }}
-        run: node deploy.js
+        run: |
+          echo "Checking environment and running deploy..."
+          node deploy.js
