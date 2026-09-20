@@ -84,10 +84,22 @@
           <label class="block text-xs font-medium text-gray-600 mb-1">Ποσό GMC προς Πληρωμή:</label>
           <input id="transferAmount" type="number" step="0.1" placeholder="π.χ. 2.0" class="w-full text-lg font-bold p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
         </div>
+        
+        <!-- Επιλογή 1: Σκανάρισμα QR -->
         <button id="btnScanQR" onclick="startCitizenScanner()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-md flex items-center justify-center gap-2 transition">
           📷 Σκανάρισμα QR & Άμεση Πληρωμή
         </button>
         <div id="reader" class="hidden w-full overflow-hidden rounded-xl border-2 border-blue-400"></div>
+
+        <!-- Επιλογή 2: Χειροκίνητη Πληρωμή με Επικόλληση Διεύθυνσης -->
+        <div class="space-y-2 pt-2 border-t border-gray-200">
+          <label class="block text-xs font-medium text-gray-600">Ή πληκτρολόγησε / επικόλληση διεύθυνσης εμπόρου:</label>
+          <div class="flex gap-2">
+            <input id="manualRecipient" type="text" placeholder="0x..." class="w-full text-xs font-mono p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
+            <button onclick="payManual()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 rounded-lg text-sm transition">Πληρωμή</button>
+          </div>
+        </div>
+
         <p id="txStatus" class="hidden text-xs text-center font-semibold p-2 rounded bg-blue-50 text-blue-700"></p>
       </div>
     </div>
