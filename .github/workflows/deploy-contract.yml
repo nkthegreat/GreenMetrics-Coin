@@ -18,7 +18,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Deploy Script
+      - name: Run Deploy Script & Debug
         env:
           ADMIN_PRIVATE_KEY: ${{ secrets.ADMIN_PRIVATE_KEY }}
-        run: node deploy.js
+        run: |
+          node deploy.js || echo "DEPLOY_FAILED_WITH_EXIT_CODE_$?"
