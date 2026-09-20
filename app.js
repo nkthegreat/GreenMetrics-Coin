@@ -188,6 +188,31 @@ async function startCitizenScanner() {
 }
 
 // ==========================================
+// 5.1. ΧΕΙΡΟΚΙΝΗΤΗ ΠΛΗΡΩΜΗ ΜΕ ΕΠΙΚΟΛΛΗΣΗ ΔΙΕΥΘΥΝΣΗΣ (Manual Pay)
+// ==========================================
+async function payManual() {
+  const recipientInput = document.getElementById("manualRecipient");
+  const amountInput = document.getElementById("transferAmount");
+  
+  const recipient = recipientInput ? recipientInput.value.trim() : "";
+  const amount = amountInput ? amountInput.value.trim() : "";
+
+  // Έλεγχος εγκυρότητας διεύθυνσης Ethereum
+  if (!recipient || !recipient.startsWith("0x") || recipient.length !== 42) {
+    alert("Παρακαλώ εισάγετε μια έγκυρη διεύθυνση πορτοφολιού (0x...).");
+    return;
+  }
+
+  // Έλεγχος ποσού
+  if (!amount || parseFloat(amount) <= 0) {
+    alert("Παρακαλώ εισάγετε ένα έγκυρο ποσό GMC προς πληρωμή!");
+    return;
+  }
+
+  await executeTransfer(recipient, amount);
+}
+
+// ==========================================
 // 6. ON-CHAIN ΜΕΤΑΦΟΡΑ GMC
 // ==========================================
 async function executeTransfer(recipient, amount) {
@@ -213,7 +238,11 @@ async function executeTransfer(recipient, amount) {
 
     alert(`🎉 Επιτυχής πληρωμή ${amount} GMC!`);
     const transferAmountInput = document.getElementById("transferAmount");
+    const manualRecipientInput = document.getElementById("manualRecipient");
+    
     if (transferAmountInput) transferAmountInput.value = "";
+    if (manualRecipientInput) manualRecipientInput.value = "";
+    
     refreshBalance();
   } catch (err) {
     console.error("Transfer Error:", err);
