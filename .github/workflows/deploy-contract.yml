@@ -5,7 +5,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
@@ -18,9 +18,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Check Balance & Run Deploy
+      - name: Run Deploy Script
         env:
           ADMIN_PRIVATE_KEY: ${{ secrets.ADMIN_PRIVATE_KEY }}
-        run: |
-          echo "Checking environment and running deploy..."
-          node deploy.js
+        run: node deploy.js
