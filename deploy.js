@@ -21,7 +21,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract GreenMetricsCoin is ERC20, Ownable {
-    constructor() ERC20("GreenMetrics Coin", "GMC") Ownable(msg.sender) {}
+    constructor() ERC20("GreenMetrics Coin", "GMC") Ownable(msg.sender) {
+        // Δημιουργία 1.000.000 GMC και άμεση αποστολή στον Admin
+        _mint(msg.sender, 1000000 * 10 ** decimals());
+    }
 
     function rewardRecycling(address citizen, uint256 amount) external onlyOwner {
         _mint(citizen, amount);
